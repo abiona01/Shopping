@@ -1,14 +1,21 @@
 const mongoose = require("mongoose");
 
 const ItemSchema = new mongoose.Schema({
-	image: {},
 	name: {
 		type: String,
-		required: [true, "Please add item name"],
+		required: true,
 	},
 	price: {
 		type: Number,
-		required: [true, "Please add item price"],
+		required: true,
+	},
+	countInStock: {
+		type: Number,
+		required: true,
+	},
+	imageUrl: {
+		type: String,
+		requried: true,
 	},
 });
 
