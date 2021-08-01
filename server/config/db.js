@@ -1,17 +1,16 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
+const colors = require("colors");
 
 const connectDB = async () => {
 	try {
-		const conn = await mongoose.connect(process.env.MONGO_URI, {
+		await mongoose.connect(process.env.MONGO_URI, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
-			useCreateIndex: true,
 		});
-		console.log(
-			`MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold
-		);
-	} catch (err) {
-		console.log(`Error: ${err.message}`.red);
+		console.log("MongoDB connection SUCCESS".cyan.underline);
+	} catch (error) {
+		console.error("MongoDB connection FAIL");
 		process.exit(1);
 	}
 };

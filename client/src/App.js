@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// Components
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
@@ -18,7 +19,7 @@ function App() {
 						<Route exact path='/signin' component={SignIn} />
 						<Route exact path='/signup' component={SignUp} />
 						<Route exact path='/' component={LandingPage} />
-						<Route exact path='/product' component={ProductPage} />
+						<Route exact path='/product/:id' component={ProductPage} />
 						<Route exact path='/cart' component={CartPage} />
 						<LandingPage />
 					</Switch>

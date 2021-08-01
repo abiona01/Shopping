@@ -68,9 +68,9 @@ img {
 }
 .cart_div {
 	width: 100%;
-	padding: 1rem;
+	padding: 1rem 0;
 	display: grid;
-	grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+	grid-template-columns: 3fr 1fr 1fr 1fr;
 	gap: 6px;
 	background: #fff;
 	border-radius: 2px;
@@ -78,7 +78,9 @@ img {
 	margin-bottom: 8px;
 }
 .cart_img {
+	min-width: 40px;
 	width: 100%;
+	height: 100%;
 	object-fit: contain;
 	padding: 0;
 }

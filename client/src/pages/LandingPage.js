@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+// Components
 import Product from "../components/Product";
-
+// Action
+import { getProducts as listProducts } from "../redux/actions/productAction";
 const useStyles = makeStyles((theme) => ({
 	page: {
 		marginBlockStart: theme.spacing(6),
@@ -36,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Landing() {
+	const dispatch = useDispatch();
+	const getProducts = useSelector((state) => state.getProducts);
+	const { products, loading, error } = getProducts;
+	useEffect(() => {
+		dispatch(listProducts());
+	}, [dispatch]);
 	const classes = useStyles();
 
 	return (
@@ -44,6 +53,7 @@ export default function Landing() {
 				<Typography variant='h4' className='landing_title'>
 					Latest Products
 				</Typography>
+
 				<Grid
 					container
 					direction='row'
@@ -52,19 +62,24 @@ export default function Landing() {
 					alignItems='center'
 					spacing={4}
 				>
-					<Grid item xs={12} sm={4} lg={3} className={classes.paper}>
-						<Product />
-					</Grid>
-
-					<Grid item xs={12} sm={4} lg={3} className={classes.paper}>
-						<Product />
-					</Grid>
-					<Grid item xs={12} sm={4} lg={3} className={classes.paper}>
-						<Product />
-					</Grid>
-					<Grid item xs={12} sm={4} lg={3} className={classes.paper}>
-						<Product />
-					</Grid>
+					{loading ? (
+						<h2>Loading...</h2>
+					) : error ? (
+						<h2>{error}</h2>
+					) : (
+						products.map((product) => (
+							<Grid item xs={12} sm={4} lg={3} className={classes.paper}>
+								<Product
+									key={product._id}
+									name={product.name}
+									description={product.description}
+									price={product.price}
+									imageUrl={product.imageUrl}
+									productId={product._id}
+								/>
+							</Grid>
+						))
+					)}
 				</Grid>
 			</Container>
 		</Box>
