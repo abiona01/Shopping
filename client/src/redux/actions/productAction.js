@@ -1,7 +1,7 @@
 import * as actionTypes from '../types/productTypes';
 import axios from 'axios';
 
-export const BASE_ROUTE = process.env.API_URL || 'localhost:5000';
+export const BASE_ROUTE = process.env.REACT_APP_API_URL || 'localhost:5000';
 export const getProducts = () => async (dispatch) => {
   try {
     dispatch({
