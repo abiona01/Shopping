@@ -3,7 +3,7 @@ import axios from 'axios';
 import { BASE_ROUTE } from './productAction';
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`https://${BASE_ROUTE}/api/products/${id}`);
+  const { data } = await axios.get(`${BASE_ROUTE}/api/products/${id}`);
   dispatch({
     type: actionTypes.ADD_TO_CART,
     payload: {
